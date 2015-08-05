@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Andrnode</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/about">About</a></li>
+            <li><a href="/mailus">Mail Us</a></li>
+        </ul>
+
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+    <div class="col-md-10">
+        <table class="table table-striped">
+            <tr>
+                <td>#</td>
+                <td>渠道名</td>
+                <td>URL</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>小米应用商店</td>
+                <td><input type="text" placeholder="http://..."/></td>
+                <td><button class="btn btn-primary">打包</button></td>
+                <td><button class="btn btn-warning">删除</button></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="col-md-8">
+        <!--<h1><%= title %></h1>-->
+
+        <!--<p>Welcome to <%= title %></p>-->
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Input: </label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="put string here">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

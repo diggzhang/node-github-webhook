@@ -1,0 +1,12 @@
+*~
+*.sw*
+*.log
+
+.idea
+.DS_Store
+
+build/
+compile/
+vendor/
+node_modules/
+bower_components/
