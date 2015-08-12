@@ -1,6 +1,29 @@
 var express = require('express');
 var router = express.Router();
-var shell = require('shelljs');
+var wechat = require('wechat-enterprise-api');
+var wc = require('./wechat');
+var api = new wechat(wc.corpid, wc.corpsecret, 10);
+
+// WeChat Format
+// send to @all(alluser)
+var to = {
+    "touser": "@all"
+}
+// message
+var message = {
+    "msgtype": "news",
+    "news": {
+        "articles": [
+            {
+                "title": "Title",
+                "description": "Description",
+                "url": "URL",
+                "picurl": ""
+            }
+        ]
+    },
+    "safe": "0"
+};
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -17,13 +40,13 @@ router.get('/', function (req, res, next) {
  *   shell.exec('git pull')
  * */
 router.post('/webhooker', function (req, res, next) {
-    res.render('index', {title: req.body.name});
-    console.log(req.body.repository);
-    console.log(req.body.repository.git_url);
+    message.news.articles[0].title = "Matrix Push Log";
+    message.news.articles[0].description = req.body.head_commit.author.name + ': ' + req.body.head_commit.message;
+    message.news.articles[0].url = req.body.compare;
 
-    shell.cd('/home/master/Documents/androidPkg/');
-    shell.exec('git pull');
-    shell.exec("echo 'git pulling...'");
+    api.send(to, message, function (err, data, res) {
+        if (err) throw err;
+    });
 });
 
 module.exports = router;
