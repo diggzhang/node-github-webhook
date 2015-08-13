@@ -2,28 +2,7 @@ var express = require('express');
 var router = express.Router();
 var wechat = require('wechat-enterprise-api');
 var wc = require('./wechat');
-var api = new wechat(wc.corpid, wc.corpsecret, 10);
-
-// WeChat Format
-// send to @all(alluser)
-var to = {
-    "touser": "@all"
-}
-// message
-var message = {
-    "msgtype": "news",
-    "news": {
-        "articles": [
-            {
-                "title": "Title",
-                "description": "Description",
-                "url": "URL",
-                "picurl": ""
-            }
-        ]
-    },
-    "safe": "0"
-};
+var api = new wechat(wc.corpid, wc.corpsecret, wc.productid);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -40,13 +19,35 @@ router.get('/', function (req, res, next) {
  *   shell.exec('git pull')
  * */
 router.post('/webhooker', function (req, res, next) {
-    message.news.articles[0].title = "Matrix Push Log";
-    message.news.articles[0].description = req.body.head_commit.author.name + ': ' + req.body.head_commit.message;
-    message.news.articles[0].url = req.body.compare;
+	// WeChat Format
+	// send to @all(alluser)
+	var to = {
+    	"touser": "@all"
+	}
+	// message
+	var message = {
+    	"msgtype": "news",
+    	"news": {
+        	"articles": [
+            	{
+                	"title": "Title",
+                	"description": "Description",
+                	"url": "",
+                	"picurl": ""
+            	}
+        	]
+    	},
+    	"safe": "0"
+	};
+
+    message.news.articles[0].title = req.body.head_commit.author.name;
+    message.news.articles[0].description = 'matrix git commit: ' + req.body.head_commit.message;
 
     api.send(to, message, function (err, data, res) {
         if (err) throw err;
+    	console.log(req.body.head_commit.author.name + ' pushed.');
     });
+
 });
 
 module.exports = router;
